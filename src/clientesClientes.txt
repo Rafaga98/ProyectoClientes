@@ -1,0 +1,19 @@
+-----------------------------------------
+Rut: 22
+Nombre: 22
+Apellido: 22
+Años como cliente: 22
+Categoria: ACTIVO
+----------------------------------------------------------------------------------
+Rut: 22
+Nombre: 22
+Apellido: 22
+Años como cliente: 22
+Categoria: ACTIVO
+----------------------------------------------------------------------------------
+Rut: 33
+Nombre: 33
+Apellido: 33
+Años como cliente: 33
+Categoria: ACTIVO
+-----------------------------------------

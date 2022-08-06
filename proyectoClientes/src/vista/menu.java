@@ -38,7 +38,7 @@ public class menu {
 		this.archivoServicio = archivoServicio;
 		this.exportarCsv = exportarCsv;
 		this.exportarTxt = exportarTxt;
-		this.fileName = fileName;
+		//this.fileName = fileName;
 		this.fileName1 = fileName1;
 		this.leer = leer;
 	}
@@ -367,8 +367,8 @@ public class menu {
 				ruta = leer.next().toString();
 				ExportadorCsv ecsv = new ExportadorCsv();
 				ecsv.crearCarpeta(ruta);
-				ecsv.crearArchivo(ruta+"/cliente.csv");
-				ecsv.exportar(ruta+"/cliente.csv", clientes);
+				ecsv.crearArchivo(ruta+"/"+fileName+".txt");
+				ecsv.exportar(ruta+"/"+fileName+".txt", clientes);
 				utilidad.tiempoEspera();
 				utilidad.limpieza();
 				System.out.println("Datos de Clientes exoportados correctamente en formato csv.");
@@ -380,8 +380,8 @@ public class menu {
 				ruta = leer.next().toString();
 				ExportadorTxt ett = new ExportadorTxt();
 				ett.crearCarpeta(ruta);
-				ett.crearArchivo(ruta+"/cliente.txt");
-				ett.exportar(ruta+"/cliente.txt", clientes);
+				ett.crearArchivo(ruta+"/"+fileName+".txt");
+				ett.exportar(ruta+"/"+fileName+".txt", clientes);
 				utilidad.tiempoEspera();
 				utilidad.limpieza();
 				System.out.println("Datos de Clientes exoportados correctamente en formato txt.");
