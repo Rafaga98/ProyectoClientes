@@ -5,8 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import modelo.CategoriaEnum;
 import modelo.Cliente;
 
 public class ImportarDatos extends ArchivoServicio{
@@ -46,19 +48,38 @@ public class ImportarDatos extends ArchivoServicio{
 				 */
 				String contenidoArchivo = memoriaLectura.readLine();
 				while(contenidoArchivo !=null) {
-					//System.out.println(contenidoArchivo);
-					contenidoArchivo = memoriaLectura.readLine();
-					/*
-					 * List<String> listaArchivo = new ArrayList<>();
-					 * listaArchivo.add(contenidoArchivo);
-					 */
-					
-					
-					String[] datos = contenidoArchivo.split(":");
-					
-					System.out.println(datos);
-					
-					
+
+					  String[] lista = contenidoArchivo.split(",");
+
+					  Cliente cl = new Cliente();
+					  
+					  String r = lista[0];
+					  String n = lista[1];
+					  String a = lista[2];
+					  String anio = lista[3];
+					  String NombreCategoria = lista[4];
+					  
+					  System.out.println(NombreCategoria);
+					  
+					  if(NombreCategoria == "Activo") {
+						  Cliente clientes = new Cliente(r, n, a, anio, CategoriaEnum.ACTIVO);
+						  List<Cliente> listaClientes = new ArrayList<>();
+						  listaClientes.add(clientes);
+						  System.out.println(listaClientes);
+						  ClienteServicio cS = new ClienteServicio();
+						  cS.setListaClientes(listaClientes);
+						  
+						  
+					  }else {
+						  Cliente clientes = new Cliente(r, n, a, anio, CategoriaEnum.INACTIVO);
+						  List<Cliente> listaClientes = new ArrayList<>();
+						  listaClientes.add(clientes);
+						  
+						  ClienteServicio cS = new ClienteServicio();
+						  cS.setListaClientes(listaClientes);
+					  }
+
+					  contenidoArchivo = memoriaLectura.readLine();
 				}
 				memoriaLectura.close();
 	}
