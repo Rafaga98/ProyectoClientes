@@ -39,7 +39,7 @@ public void setListaClientes(List<Cliente> listaClientes) {
 			System.out.println("Nombre: "+ cliente.getNombreCliente()+" Apellido: "+ cliente.getApellidoCliente()+" Rut: "+ cliente.getRunCliente()+" Edad: "+ cliente.getAniosCliente()+ " Estado: "+cliente.getNombreCategoria());
 			System.out.println();
 			
-			//rut, nombre, apellido, edad, CategoriaEnum.ACTIVO
+			
 		}
 		 
 	}

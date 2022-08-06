@@ -224,50 +224,15 @@ public class menu {
 				cambiarEstadoCliente(cliente);
 				break;
 			case 2:
-				System.out.println("------Actualizando estado del Cliente------");
-				System.out.println("1.- El RUN del Cliente es: ");
-				System.out.println("2.- El Nombre del Cliente es: ");
-				System.out.println("3.- El Apellido del Cliente es: ");
-				System.out.println("4.- Los años del Cliente son: ");
-				System.out.println("Ingrese opcion a editar: ");
-				opcion = leer.nextInt();
-				utilidad.limpieza();
-				do {
-					switch (opcion) {
-					case 1:
-						System.out.println("1.- Ingrese nuevo RUN del Cliente: ");
-						respuesta = leer.next();
-						utilidad.mostrarMensaje1();
-						break;
-					case 2:
-						System.out.println("2.- Ingrese nuevo Nombre del Cliente: ");
-						respuesta = leer.next();
-						utilidad.mostrarMensaje1();
-						break;
-					case 3:
-						System.out.println("3.- Ingrese nuevo Apellido del Cliente: ");
-						respuesta = leer.next();
-						utilidad.mostrarMensaje1();
-						break;
-					case 4:
-						System.out.println("4.- Ingrese nueva Edad del Cliente: ");
-						respuesta = leer.next();
-						utilidad.mostrarMensaje1();
-						break;
-					default:
-						utilidad.mostrarMensaje();
-						break;
-					}
-				} while (opcion != 4);
-				utilidad.tiempoEspera();
+				cambiarDatosCliente(cliente);
 				utilidad.limpieza();
 				break;
 			default:
-				utilidad.mostrarMensaje();
+				System.out.println("Opcion no valida");
 				break;
+				
 			}
-		} while (opcion < 1 || opcion > 2);
-
+		}while (opcion<1||opcion>2);
 	}
 
 	private void cambiarEstadoCliente(Cliente cliente) {
@@ -305,6 +270,52 @@ public class menu {
 		
 		
 	}
+	
+	private void cambiarDatosCliente(Cliente cliente) {
+		
+		System.out.println("------Actualizando estado del Cliente------");
+		System.out.println("1.- El RUN del Cliente es: " + cliente.getRunCliente() );
+		System.out.println("2.- El Nombre del Cliente es: "+ cliente.getNombreCliente());
+		System.out.println("3.- El Apellido del Cliente es: "+ cliente.getApellidoCliente());
+		System.out.println("4.- Los años del Cliente son: "+ cliente.getAniosCliente());
+		System.out.println("Ingrese opcion a editar: ");
+		opcion = leer.nextInt();
+		System.out.println("-------------------------------------------");
+		 do{
+			switch (opcion) {
+			case 1:
+				System.out.println("1.- Ingrese nuevo RUN del Cliente: ");
+				respuesta = leer.next();
+				cliente.setRunCliente(respuesta);
+				System.out.println("Datos cambiados con éxito");
+				break;
+			case 2:
+				System.out.println("2.- Ingrese nuevo Nombre del Cliente: ");
+				respuesta = leer.next();
+				cliente.setNombreCliente(respuesta);
+				System.out.println("Datos cambiados con éxito");
+				break;
+			case 3:
+				System.out.println("3.- Ingrese nuevo Apellido del Cliente: ");
+				respuesta = leer.next();
+				cliente.setApellidoCliente(respuesta);
+				System.out.println("Datos cambiados con éxito");
+				break;
+			case 4:
+				System.out.println("4.- Ingrese nueva Edad del Cliente: ");
+				respuesta = leer.next();
+				cliente.setAniosCliente(respuesta);
+				System.out.println("Datos cambiados con éxito");
+				break;
+			default:
+				System.out.println("Opcion no valida");
+				break;
+			}
+		} while (opcion <1||opcion>4);
+		 System.out.println("salir");
+		System.out.println("-------------------------------------------");
+	}
+	
 	
 	
 	
