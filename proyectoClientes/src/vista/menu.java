@@ -148,15 +148,17 @@ public class menu {
 
 	}
 
-	public void listarCliente() {
+	public void listarCliente() throws IOException {
 		System.out.println("-----------------Datos del Cliente----------------");
 		ClienteServicio sc = new ClienteServicio();
 		sc.retornoListarClientes(this.clientes);
 		utilidad.tiempoEspera();
 		utilidad.limpieza();
+		utilidad.tiempoEspera();
+		iniciarMenu();
 	}
 
-	public void agregarCliente() {
+	public void agregarCliente() throws IOException {
 		System.out.println("-----------------Crear Cliente----------------");
 		System.out.println("Ingresa RUN del Cliente: ");
 		String rut = leer.next();
@@ -178,9 +180,11 @@ public class menu {
 		System.out.println(cliente.toString());
 		utilidad.tiempoEspera();
 		utilidad.limpieza();
+		utilidad.tiempoEspera();
+		iniciarMenu();
 	}
 
-	public void editarCliente() {
+	public void editarCliente() throws IOException {
 
 		System.out.println("-----------------Editar Cliente----------------");
 
@@ -211,7 +215,7 @@ public class menu {
 		return null;
 	}
 
-	private void menuEditarCliente(Cliente cliente) {
+	private void menuEditarCliente(Cliente cliente)throws IOException {
 
 		do {
 			System.out.println("Seleccione que desea hacer: ");
@@ -222,10 +226,14 @@ public class menu {
 			switch (opcion) {
 			case 1:
 				cambiarEstadoCliente(cliente);
+				utilidad.tiempoEspera();
+				iniciarMenu();
 				break;
 			case 2:
 				cambiarDatosCliente(cliente);
 				utilidad.limpieza();
+				utilidad.tiempoEspera();
+				iniciarMenu();
 				break;
 			default:
 				System.out.println("Opcion no valida");
@@ -235,7 +243,7 @@ public class menu {
 		}while (opcion<1||opcion>2);
 	}
 
-	private void cambiarEstadoCliente(Cliente cliente) {
+	private void cambiarEstadoCliente(Cliente cliente) throws IOException {
 		
 		
 		System.out.println("------Actualizando estado del Cliente "+ cliente.getNombreCliente()+" "+ cliente.getApellidoCliente());
@@ -256,9 +264,13 @@ public class menu {
 						cliente.setNombreCategoria(CategoriaEnum.ACTIVO);
 						
 					}
+					utilidad.tiempoEspera();
+					iniciarMenu();
 					break;
 				case 2:
 					System.out.println("Se mantuvo el estado actual del Cliente");
+					utilidad.tiempoEspera();
+					iniciarMenu();
 					break;
 				default:
 					utilidad.mostrarMensaje();
@@ -271,7 +283,7 @@ public class menu {
 		
 	}
 	
-	private void cambiarDatosCliente(Cliente cliente) {
+	private void cambiarDatosCliente(Cliente cliente) throws IOException {
 		
 		System.out.println("------Actualizando estado del Cliente------");
 		System.out.println("1.- El RUN del Cliente es: " + cliente.getRunCliente() );
@@ -306,6 +318,8 @@ public class menu {
 				respuesta = leer.next();
 				cliente.setAniosCliente(respuesta);
 				System.out.println("Datos cambiados con éxito");
+				utilidad.tiempoEspera();
+				iniciarMenu();
 				break;
 			default:
 				System.out.println("Opcion no valida");
@@ -319,7 +333,7 @@ public class menu {
 	
 	
 	
-	public void importarDatos() {
+	public void importarDatos() throws IOException {
 		System.out.println("---------------------Cargar Datos---------------------");
 		System.out.println("1.-Linux o Mac");
 		System.out.println("2.-Windows");
@@ -350,6 +364,8 @@ public class menu {
 				utilidad.tiempoEspera();
 				utilidad.limpieza();
 				utilidad.mostrarMensaje2();
+				utilidad.tiempoEspera();
+				iniciarMenu();
 				break;
 			default:
 				utilidad.mostrarMensaje();
