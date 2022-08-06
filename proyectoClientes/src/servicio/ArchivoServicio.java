@@ -12,7 +12,7 @@ public abstract class ArchivoServicio extends Exportador{
 	}
 	
 	
-	
+	public abstract void cargarDatos(String fileName);
 	
 	
 }
