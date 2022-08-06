@@ -1,7 +1,7 @@
 package servicio;
 
 import java.util.List;
-
+import java.io.File;
 import modelo.Cliente;
 
 public class ExportadorCsv extends Exportador{
@@ -10,5 +10,7 @@ public class ExportadorCsv extends Exportador{
 		super(listaClientes);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 }

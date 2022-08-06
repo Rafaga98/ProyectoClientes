@@ -1,7 +1,7 @@
 package servicio;
 
 import java.util.List;
-
+import java.io.File;
 import modelo.Cliente;
 
 public class ExportadorTxt extends Exportador{

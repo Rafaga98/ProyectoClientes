@@ -1,5 +1,5 @@
 package vista;
-
+import utilidades.Utilidad;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +17,9 @@ public class menu {
 	private String fileName1 = "DBClientes.csv";
 
 	ArrayList<Cliente> clientes = new ArrayList<>();
-
+	
+	Utilidad utilidad = new Utilidad();
+	
 	Scanner leer = new Scanner(System.in);
 	int opcion = 0;
 	String respuesta;
@@ -135,7 +137,7 @@ public class menu {
 				break;
 			}
 			default:
-				System.out.println("Opcion no valida.");
+				utilidad.mostrarMensaje();
 				break;
 
 			}
@@ -148,8 +150,8 @@ public class menu {
 		System.out.println("-----------------Datos del Cliente----------------");
 		ClienteServicio sc = new ClienteServicio();
 		sc.retornoListarClientes(this.clientes);
-
-		System.out.println("--------------------------------------------------");
+		utilidad.tiempoEspera();
+		utilidad.limpieza();
 	}
 
 	public void agregarCliente() {
@@ -162,6 +164,7 @@ public class menu {
 		String apellido = leer.next();
 		System.out.println("Ingresa Edad del Cliente: ");
 		String edad = leer.next();
+		
 		System.out.println("-----------------------------------------------");
 
 		Cliente cliente = new Cliente(rut, nombre, apellido, edad, CategoriaEnum.ACTIVO);
@@ -171,7 +174,8 @@ public class menu {
 		ClienteServicio scc = new ClienteServicio();
 		scc.setListaClientes(clientes);
 		System.out.println(cliente.toString());
-
+		utilidad.tiempoEspera();
+		utilidad.limpieza();
 	}
 
 	public void editarCliente() {
@@ -190,7 +194,8 @@ public class menu {
 			menuEditarCliente(cliente);
 		}
 
-		System.out.println("-----------------------------------------------");
+		utilidad.tiempoEspera();
+		utilidad.limpieza();
 	}
 
 	private Cliente buscarClientePorRun(String rutCliente) {
@@ -224,38 +229,39 @@ public class menu {
 				System.out.println("4.- Los años del Cliente son: ");
 				System.out.println("Ingrese opcion a editar: ");
 				opcion = leer.nextInt();
-				System.out.println("-------------------------------------------");
+				utilidad.limpieza();
 				do {
 					switch (opcion) {
 					case 1:
 						System.out.println("1.- Ingrese nuevo RUN del Cliente: ");
 						respuesta = leer.next();
-						System.out.println("Datos cambiados con éxito");
+						utilidad.mostrarMensaje1();
 						break;
 					case 2:
 						System.out.println("2.- Ingrese nuevo Nombre del Cliente: ");
 						respuesta = leer.next();
-						System.out.println("Datos cambiados con éxito");
+						utilidad.mostrarMensaje1();
 						break;
 					case 3:
 						System.out.println("3.- Ingrese nuevo Apellido del Cliente: ");
 						respuesta = leer.next();
-						System.out.println("Datos cambiados con éxito");
+						utilidad.mostrarMensaje1();
 						break;
 					case 4:
 						System.out.println("4.- Ingrese nueva Edad del Cliente: ");
 						respuesta = leer.next();
-						System.out.println("Datos cambiados con éxito");
+						utilidad.mostrarMensaje1();
 						break;
 					default:
-						System.out.println("Opcion no valida");
+						utilidad.mostrarMensaje();
 						break;
 					}
 				} while (opcion != 4);
-				System.out.println("-------------------------------------------");
+				utilidad.tiempoEspera();
+				utilidad.limpieza();
 				break;
 			default:
-				System.out.println("Opcion no valida");
+				utilidad.mostrarMensaje();
 				break;
 			}
 		} while (opcion < 1 || opcion > 2);
@@ -277,7 +283,8 @@ public class menu {
 				case 1:
 					
 					if(cliente.getNombreCategoria() == CategoriaEnum.ACTIVO) {
-					cliente.setNombreCategoria(CategoriaEnum.INACTIVO);
+						cliente.setNombreCategoria(CategoriaEnum.INACTIVO);
+						System.out.println("Se cambio el estado correctamente a: "+cliente.getNombreCategoria());
 					}else {
 						cliente.setNombreCategoria(CategoriaEnum.ACTIVO);
 						
@@ -287,12 +294,12 @@ public class menu {
 					System.out.println("Se mantuvo el estado actual del Cliente");
 					break;
 				default:
-					System.out.println("Opcion no valida");
+					utilidad.mostrarMensaje();
 					break;
 			}
 		}while(opcion <1 || opcion>2);
-		System.out.println("-------------------------------------------");
-		
+		utilidad.tiempoEspera();
+		utilidad.limpieza();
 		
 		
 	}
@@ -311,18 +318,20 @@ public class menu {
 				System.out.println("-----------Cargar Datos en Linux o MAC--------------");
 				System.out.println("Ingresa la ruta en donde se encuentra el archivo DBClientes.csv: ");
 				ruta = leer.next();
-				System.out.println("----------------------------------------------------");
-				System.out.println("Datos Cargados Correctamente en la lista");
+				utilidad.tiempoEspera();
+				utilidad.limpieza();
+				utilidad.mostrarMensaje2();
 				break;
 			case 2:
 				System.out.println("-----------Cargar Datos en Windows--------------");
 				System.out.println("Ingresa la ruta en donde se encuentra el archivo DBClientes.csv: ");
 				ruta = leer.next();
-				System.out.println("----------------------------------------------------");
-				System.out.println("Datos Cargados Correctamente en la lista");
+				utilidad.tiempoEspera();
+				utilidad.limpieza();
+				utilidad.mostrarMensaje2();
 				break;
 			default:
-				System.out.println("Opcion no valida");
+				utilidad.mostrarMensaje();
 				break;
 			}
 		} while (opcion != 2);
@@ -343,14 +352,16 @@ public class menu {
 				System.out.println("------------------Exportar Datos en Linux o MAC------------------------");
 				System.out.println("Ingresa la ruta en donde se desea exportar el archivo clientes.csv: ");
 				ruta = leer.next();
-				System.out.println("----------------------------------------------------");
+				utilidad.tiempoEspera();
+				utilidad.limpieza();
 				System.out.println("Datos de Clientes exoportados correctamente en formato csv.");
 				break;
 			case 2:
 				System.out.println("----------------------Exportar Datos en Windows-----------------------");
 				System.out.println("Ingresa la ruta en donde se desea exportar el archivo clientes.txt: ");
 				ruta = leer.next();
-				System.out.println("----------------------------------------------------");
+				utilidad.tiempoEspera();
+				utilidad.limpieza();
 				System.out.println("Datos de Clientes exoportados correctamente en formato txt.");
 				break;
 			default:
@@ -358,7 +369,8 @@ public class menu {
 			}
 		} while (opcion != 2);
 
-		System.out.println("----------------------------------------------------");
+		utilidad.tiempoEspera();
+		utilidad.limpieza();
 	}// cierre del metodo exportar
 
 	public void terminarPrograma() {
