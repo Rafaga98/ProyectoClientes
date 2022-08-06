@@ -3,6 +3,8 @@ package servicio;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import modelo.CategoriaEnum;
 import modelo.Cliente;
 
 public class ClienteServicio {
@@ -29,12 +31,15 @@ public void setListaClientes(List<Cliente> listaClientes) {
 
 
 	//metodo recorre listaclientes y muestra
-	public void retornoListarClientes() {
+	public void retornoListarClientes(ArrayList<Cliente> clientes) {
 		
-		for(Iterator<Cliente> iterador = getListaClientes().iterator(); iterador.hasNext();) {
-			Cliente producto = (Cliente)iterador.next();
-			System.out.println("PRODUCTO");
-			System.out.println("Nombre Articulo: "+ producto);
+		for(Cliente cliente: clientes) {
+			
+			
+			System.out.println("Nombre: "+ cliente.getNombreCliente()+" Apellido: "+ cliente.getApellidoCliente()+" Rut: "+ cliente.getRunCliente()+" Edad: "+ cliente.getAniosCliente()+ " Estado: "+cliente.getNombreCategoria());
+			System.out.println();
+			
+			//rut, nombre, apellido, edad, CategoriaEnum.ACTIVO
 		}
 		 
 	}

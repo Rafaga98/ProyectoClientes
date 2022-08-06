@@ -1,5 +1,5 @@
 package modelo;
 
-public class CategoriaEnum {
-	enum estado {Activo, Inactivo};
+public enum CategoriaEnum {
+	ACTIVO, INACTIVO;
 }

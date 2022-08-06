@@ -1,4 +1,5 @@
 package vista;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,25 +8,28 @@ import modelo.CategoriaEnum;
 import servicio.*;
 
 public class menu {
-	
+
 	ClienteServicio clienteServicio;
 	ArchivoServicio archivoServicio;
 	ExportadorCsv exportarCsv;
 	ExportadorTxt exportarTxt;
 	private String fileName = "Clientes";
 	private String fileName1 = "DBClientes.csv";
-	
+
+	ArrayList<Cliente> clientes = new ArrayList<>();
+
 	Scanner leer = new Scanner(System.in);
 	int opcion = 0;
 	String respuesta;
 	String ruta;
-	
-	 public menu() {}
-	
-	//Constructor
-		public menu(ClienteServicio clienteServicio, ArchivoServicio archivoServicio, ExportadorCsv exportarCsv,
+
+	public menu() {
+	}
+
+	// Constructor
+	public menu(ClienteServicio clienteServicio, ArchivoServicio archivoServicio, ExportadorCsv exportarCsv,
 			ExportadorTxt exportarTxt, String fileName, String fileName1, Scanner leer) {
-		//super();
+		// super();
 		this.clienteServicio = clienteServicio;
 		this.archivoServicio = archivoServicio;
 		this.exportarCsv = exportarCsv;
@@ -35,7 +39,7 @@ public class menu {
 		this.leer = leer;
 	}
 
-	//getters y setters 
+	// getters y setters
 	public ClienteServicio getClienteServicio() {
 		return clienteServicio;
 	}
@@ -91,14 +95,9 @@ public class menu {
 	public void setLeer(Scanner leer) {
 		this.leer = leer;
 	}
-	
-	
-	
-	
-	
-	
-	//metodos de negocio
-	
+
+	// metodos de negocio
+
 	public void iniciarMenu() {
 		do {
 			System.out.println("1.- Listar Clientes");
@@ -109,147 +108,194 @@ public class menu {
 			System.out.println("6.- Salir");
 			System.out.println("Ingrese una opcion: ");
 			opcion = leer.nextInt();
-			
-			switch(opcion) {
-				case 1 :{
-					listarCliente();
-				}
-				case 2 :{
-					agregarCliente();
-				}
-				case 3 :{
-					listarCliente();
-				}
-				case 4 :{
-					importarDatos();
-				}
-				case 5 :{
-					exportarDatos();
-				}
-				case 6 :{
-					terminarPrograma();
-				}
-				default:
-					System.out.println("Opcion no valida.");
-					break;
-					
+
+			switch (opcion) {
+			case 1: {
+				listarCliente();
+				break;
 			}
-			
-		}while(opcion!=6);
-			
-		
+			case 2: {
+				agregarCliente();
+				break;
+			}
+			case 3: {
+				editarCliente();
+				break;
+			}
+			case 4: {
+				importarDatos();
+				break;
+			}
+			case 5: {
+				exportarDatos();
+				break;
+			}
+			case 6: {
+				terminarPrograma();
+				break;
+			}
+			default:
+				System.out.println("Opcion no valida.");
+				break;
+
+			}
+
+		} while (opcion != 6);
+
 	}
-	
-	
+
 	public void listarCliente() {
 		System.out.println("-----------------Datos del Cliente----------------");
 		ClienteServicio sc = new ClienteServicio();
-		sc.retornoListarClientes();
-	
+		sc.retornoListarClientes(this.clientes);
+
 		System.out.println("--------------------------------------------------");
 	}
-	public void agregarCliente() {	
+
+	public void agregarCliente() {
 		System.out.println("-----------------Crear Cliente----------------");
 		System.out.println("Ingresa RUN del Cliente: ");
 		String rut = leer.next();
 		System.out.println("Ingresa Nombre del Cliente: ");
-		String nombre= leer.next();
+		String nombre = leer.next();
 		System.out.println("Ingresa Apellido del Cliente: ");
-		String apellido= leer.next();
+		String apellido = leer.next();
 		System.out.println("Ingresa Edad del Cliente: ");
-		String edad= leer.next();
+		String edad = leer.next();
 		System.out.println("-----------------------------------------------");
-		
-		Cliente cliente = new Cliente(rut, nombre, apellido, edad, null);
-		ArrayList<Cliente> clientes = new ArrayList<>();
-		clientes.add(cliente);
-		//System.out.print(clientes);
+
+		Cliente cliente = new Cliente(rut, nombre, apellido, edad, CategoriaEnum.ACTIVO);
+
+		this.clientes.add(cliente);
+		// System.out.print(clientes);
 		ClienteServicio scc = new ClienteServicio();
 		scc.setListaClientes(clientes);
 		System.out.println(cliente.toString());
-		
+
 	}
-	
-	
-	
-	public void editarCliente() {	
+
+	public void editarCliente() {
+
 		System.out.println("-----------------Editar Cliente----------------");
+
+		System.out.println("Ingrese RUN del Cliente a editar:");
+		respuesta = leer.next();
+
+		Cliente cliente = buscarClientePorRun(respuesta);
+
+		if (cliente == null) {
+
+			System.out.println("Rut no existe");
+		} else {
+			menuEditarCliente(cliente);
+		}
+
+		System.out.println("-----------------------------------------------");
+	}
+
+	private Cliente buscarClientePorRun(String rutCliente) {
+
+		for (Cliente cliente : this.clientes) {
+			if (rutCliente.equals(cliente.getRunCliente())) { // compara rut con arreglo
+				return cliente;
+			}
+		}
+
+		return null;
+	}
+
+	private void menuEditarCliente(Cliente cliente) {
+
 		do {
 			System.out.println("Seleccione que desea hacer: ");
 			System.out.println("1.-Cambiar el estado del Cliente");
 			System.out.println("2.-Editar los datos ingresados del Cliente");
 			System.out.println("Ingrese opcion: ");
 			opcion = leer.nextInt();
-			switch(opcion) {
+			switch (opcion) {
+			case 1:
+				cambiarEstadoCliente(cliente);
+				break;
+			case 2:
+				System.out.println("------Actualizando estado del Cliente------");
+				System.out.println("1.- El RUN del Cliente es: ");
+				System.out.println("2.- El Nombre del Cliente es: ");
+				System.out.println("3.- El Apellido del Cliente es: ");
+				System.out.println("4.- Los años del Cliente son: ");
+				System.out.println("Ingrese opcion a editar: ");
+				opcion = leer.nextInt();
+				System.out.println("-------------------------------------------");
+				do {
+					switch (opcion) {
+					case 1:
+						System.out.println("1.- Ingrese nuevo RUN del Cliente: ");
+						respuesta = leer.next();
+						System.out.println("Datos cambiados con éxito");
+						break;
+					case 2:
+						System.out.println("2.- Ingrese nuevo Nombre del Cliente: ");
+						respuesta = leer.next();
+						System.out.println("Datos cambiados con éxito");
+						break;
+					case 3:
+						System.out.println("3.- Ingrese nuevo Apellido del Cliente: ");
+						respuesta = leer.next();
+						System.out.println("Datos cambiados con éxito");
+						break;
+					case 4:
+						System.out.println("4.- Ingrese nueva Edad del Cliente: ");
+						respuesta = leer.next();
+						System.out.println("Datos cambiados con éxito");
+						break;
+					default:
+						System.out.println("Opcion no valida");
+						break;
+					}
+				} while (opcion != 4);
+				System.out.println("-------------------------------------------");
+				break;
+			default:
+				System.out.println("Opcion no valida");
+				break;
+			}
+		} while (opcion < 1 || opcion > 2);
+
+	}
+
+	private void cambiarEstadoCliente(Cliente cliente) {
+		
+		
+		System.out.println("------Actualizando estado del Cliente "+ cliente.getNombreCliente()+" "+ cliente.getApellidoCliente());
+		System.out.println("El estado actual es: "+ cliente.getNombreCategoria());
+		System.out.println("¿Desea cambiar el estado?");
+		System.out.println("1 - Si");
+		System.out.println("2 - No");
+		System.out.println("Ingrese opcion: ");
+		opcion = leer.nextInt();
+		do {
+			switch(opcion){
 				case 1:
-					System.out.println("Ingrese RUN del Cliente a editar:");
-					respuesta = leer.next();
-					System.out.println("------Actualizando estado del Cliente------");
-					System.out.println("El estado actual es: Activo");
-					System.out.println("1.- Si desea cambiar el estado del Cliente a Inactivo");
-					System.out.println("2.- Si desea mantener el estado del Cliente Activo");
-					System.out.println("Ingrese opcion: ");
-					opcion = leer.nextInt();
-					do {
-						switch(opcion){
-							case 1:
-								System.out.println("El estado actual es: Inactivo");
-								break;
-							case 2:
-								System.out.println("Se mantuvo el estado actual del Cliente: Activo");
-								break;
-							default:
-								System.out.println("Opcion no valida");
-								break;
-						}
-					}while(opcion != 2);
-					System.out.println("-------------------------------------------");
+					
+					if(cliente.getNombreCategoria() == CategoriaEnum.ACTIVO) {
+					cliente.setNombreCategoria(CategoriaEnum.INACTIVO);
+					}else {
+						cliente.setNombreCategoria(CategoriaEnum.ACTIVO);
+						
+					}
 					break;
 				case 2:
-					System.out.println("------Actualizando estado del Cliente------");
-					System.out.println("1.- El RUN del Cliente es: ");
-					System.out.println("2.- El Nombre del Cliente es: ");
-					System.out.println("3.- El Apellido del Cliente es: ");
-					System.out.println("4.- Los años del Cliente son: ");
-					System.out.println("Ingrese opcion a editar: ");
-					opcion = leer.nextInt();
-					System.out.println("-------------------------------------------");
-					do {
-						switch(opcion) {
-						case 1:
-							System.out.println("1.- Ingrese nuevo RUN del Cliente: ");
-							respuesta = leer.next();
-							System.out.println("Datos cambiados con éxito");
-							break;
-						case 2:
-							System.out.println("2.- Ingrese nuevo Nombre del Cliente: ");
-							respuesta = leer.next();
-							System.out.println("Datos cambiados con éxito");
-							break;
-						case 3:
-							System.out.println("3.- Ingrese nuevo Apellido del Cliente: ");
-							respuesta = leer.next();
-							System.out.println("Datos cambiados con éxito");
-							break;
-						case 4:
-							System.out.println("4.- Ingrese nueva Edad del Cliente: ");
-							respuesta = leer.next();
-							System.out.println("Datos cambiados con éxito");
-							break;
-						default:
-							System.out.println("Opcion no valida");
-							break;
-						}
-					}while(opcion != 4);
-					System.out.println("-------------------------------------------");
+					System.out.println("Se mantuvo el estado actual del Cliente");
 					break;
 				default:
 					System.out.println("Opcion no valida");
 					break;
 			}
-		}while(opcion != 2);
-		System.out.println("-----------------------------------------------");
-	}//cierre del metodo editar
+		}while(opcion <1 || opcion>2);
+		System.out.println("-------------------------------------------");
+		
+		
+		
+	}
 	
 	
 	
@@ -260,8 +306,8 @@ public class menu {
 		System.out.println("Ingrese Opcion: ");
 		opcion = leer.nextInt();
 		do {
-			switch(opcion) {
-			case 1 :
+			switch (opcion) {
+			case 1:
 				System.out.println("-----------Cargar Datos en Linux o MAC--------------");
 				System.out.println("Ingresa la ruta en donde se encuentra el archivo DBClientes.csv: ");
 				ruta = leer.next();
@@ -279,12 +325,11 @@ public class menu {
 				System.out.println("Opcion no valida");
 				break;
 			}
-		}while(opcion != 2);
-		
+		} while (opcion != 2);
+
 		System.out.println("Datos Cargados Correctamente");
-	}//cierre del metodo importar
-	
-	
+	}// cierre del metodo importar
+
 	public void exportarDatos() {
 		System.out.println("-----------Exportar Datos--------------");
 		System.out.println("Seleccione el formato a exportar:");
@@ -293,35 +338,32 @@ public class menu {
 		System.out.println("Ingrese una opción para exportar: ");
 		opcion = leer.nextInt();
 		do {
-			switch(opcion) {
+			switch (opcion) {
 			case 1:
 				System.out.println("------------------Exportar Datos en Linux o MAC------------------------");
 				System.out.println("Ingresa la ruta en donde se desea exportar el archivo clientes.csv: ");
-				ruta = leer.next();		
+				ruta = leer.next();
 				System.out.println("----------------------------------------------------");
 				System.out.println("Datos de Clientes exoportados correctamente en formato csv.");
 				break;
 			case 2:
 				System.out.println("----------------------Exportar Datos en Windows-----------------------");
 				System.out.println("Ingresa la ruta en donde se desea exportar el archivo clientes.txt: ");
-				ruta = leer.next();		
+				ruta = leer.next();
 				System.out.println("----------------------------------------------------");
 				System.out.println("Datos de Clientes exoportados correctamente en formato txt.");
 				break;
 			default:
 				break;
 			}
-		}while(opcion != 2);
-		
+		} while (opcion != 2);
+
 		System.out.println("----------------------------------------------------");
-	}//cierre del metodo exportar
-	
-	
-	
+	}// cierre del metodo exportar
+
 	public void terminarPrograma() {
 		System.out.println("Saliendo del sistema de gestion de los clientes...");
 		System.out.println("Acaba de salir del sistema.");
 		System.exit(0);
 	}
 }
-
