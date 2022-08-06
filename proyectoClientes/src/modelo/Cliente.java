@@ -5,7 +5,7 @@ public class Cliente {
 	String nombreCliente;
 	String apellidoCliente;
 	String aniosCliente;
-	
+	CategoriaEnum nombreCategoria;
 	
 	//constructor vacio
 	public Cliente() {
@@ -13,13 +13,18 @@ public class Cliente {
 	}
 	
 	//constructor lleno
-	public Cliente(String runCliente, String nombreCliente, String apellidoCliente, String aniosCliente) {
+	public Cliente(String runCliente, String nombreCliente, String apellidoCliente, String aniosCliente, CategoriaEnum nombreCategoria) {
 		//super();
 		this.runCliente = runCliente;
 		this.nombreCliente = nombreCliente;
 		this.apellidoCliente = apellidoCliente;
 		this.aniosCliente = aniosCliente;
+		this.nombreCategoria = nombreCategoria;
 	}
+	
+	
+
+	
 
 	//getters y setters
 	public String getRunCliente() {
@@ -55,14 +60,23 @@ public class Cliente {
 	}
 	
 	
+	public CategoriaEnum getNombreCategoria() {
+		return nombreCategoria;
+	}
+
+	public void setNombreCategoria(CategoriaEnum nombreCategoria) {
+		this.nombreCategoria = nombreCategoria;
+	}
+
+	
+
 	//metodo toString
+	
 	@Override
 	public String toString() {
 		return "Cliente [runCliente=" + runCliente + ", nombreCliente=" + nombreCliente + ", apellidoCliente="
-				+ apellidoCliente + ", aniosCliente=" + aniosCliente + "]";
+				+ apellidoCliente + ", aniosCliente=" + aniosCliente + ", nombreCategoria=" + nombreCategoria + "]";
 	}
-	
-	
 	
 	
 	

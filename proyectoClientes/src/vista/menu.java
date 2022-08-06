@@ -12,7 +12,9 @@ public class menu {
 	private String fileName1 = "DBClientes.csv";
 	
 	Scanner leer = new Scanner(System.in);
-
+	int opcion = 0;
+	
+	
 	
 	//Constructor
 		public menu(ClienteServicio clienteServicio, ArchivoServicio archivoServicio, ExportadorCsv exportarCsv,
@@ -87,18 +89,70 @@ public class menu {
 	
 	
 	
+	
+	
 	//metodos de negocio
-	public void listarCliente() {
+	
+	public void iniciarMenu() {
+		do {
+			System.out.println("1.- Listar Clientes");
+			System.out.println("2.- Agregar Cliente");
+			System.out.println("3.- Editar Cliente");
+			System.out.println("4.- Cargar Datos");
+			System.out.println("5.- Exportar Datos");
+			System.out.println("6.- Salir");
+			System.out.println("Ingrese una opción: ");
+			opcion = leer.nextInt();
+			switch(opcion) {
+				case 1 :{
+					listarCliente();
+				}
+				case 2 :{
+					agregarCliente();
+				}
+				case 3 :{
+					editarCliente();
+				}
+				case 4 :{
+					importarDatos();
+				}
+				case 5 :{
+					exportarDatos();
+				}
+				case 6 :{
+					terminarPrograma();
+				}
+				default:
+					System.out.println("Opcion no valida.");
+					break;
+					
+			}
+			
+		}while(opcion!=6 || opcion<1);
+			
 		
 	}
+	
+	
+	public void listarCliente() {
+		System.out.println("-----------------Datos del Cliente----------------");
+		System.out.println("--------------------------------------------------");
+	}
 	public void agregarCliente() {	
+		System.out.println("-----------------Crear Cliente----------------");
 	}
 	public void editarCliente() {	
+		
 	}
-	public void importarDatos() {	
+	public void importarDatos() {
+		
 	}
-	public void exportarDatos() {	
+	public void exportarDatos() {
+		
 	}
 	public void terminarPrograma() {
+		System.out.println("Saliendo del sistema de gestion de los clientes...");
+		System.out.println("Acaba de salir del sistema.");
+		System.exit(0);
 	}
 }
