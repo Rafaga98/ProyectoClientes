@@ -1,4 +1,5 @@
 package vista;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import modelo.Cliente;
@@ -117,7 +118,7 @@ public class menu {
 					agregarCliente();
 				}
 				case 3 :{
-					editarCliente();
+					listarCliente();
 				}
 				case 4 :{
 					importarDatos();
@@ -144,11 +145,7 @@ public class menu {
 		System.out.println("-----------------Datos del Cliente----------------");
 		ClienteServicio sc = new ClienteServicio();
 		sc.retornoListarClientes();
-		System.out.println("RUN del Cliente: " );
-		System.out.println("Nombre del Cliente: ");
-		System.out.println("Apellido del Cliente: ");
-		System.out.println("Edad del Cliente: ");
-		System.out.println("Categoria del Cliente: ");
+	
 		System.out.println("--------------------------------------------------");
 	}
 	public void agregarCliente() {	
@@ -164,6 +161,11 @@ public class menu {
 		System.out.println("-----------------------------------------------");
 		
 		Cliente cliente = new Cliente(rut, nombre, apellido, edad, null);
+		ArrayList<Cliente> clientes = new ArrayList<>();
+		clientes.add(cliente);
+		//System.out.print(clientes);
+		ClienteServicio scc = new ClienteServicio();
+		scc.setListaClientes(clientes);
 		System.out.println(cliente.toString());
 		
 	}

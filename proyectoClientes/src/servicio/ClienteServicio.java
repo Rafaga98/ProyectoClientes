@@ -30,14 +30,13 @@ public void setListaClientes(List<Cliente> listaClientes) {
 
 	//metodo recorre listaclientes y muestra
 	public void retornoListarClientes() {
-		for(Iterator iterador = listaClientes.iterator(); iterador.hasNext();) {
-            String cliente = (String)iterador.next();
-            System.out.println("Run del Cliente: " + cliente.codePointAt(0));
-            System.out.println("Nombre del Cliente: " + cliente.codePointAt(1));
-            System.out.println("Apellido del Cliente: " + cliente.codePointAt(2));
-            System.out.println("Años como Cliente: " + cliente.codePointAt(3));
-            
-        }
+		
+		for(Iterator<Cliente> iterador = getListaClientes().iterator(); iterador.hasNext();) {
+			Cliente producto = (Cliente)iterador.next();
+			System.out.println("PRODUCTO");
+			System.out.println("Nombre Articulo: "+ producto);
+		}
+		 
 	}
 
 		
