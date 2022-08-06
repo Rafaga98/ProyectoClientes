@@ -139,6 +139,8 @@ public class menu {
 	
 	public void listarCliente() {
 		System.out.println("-----------------Datos del Cliente----------------");
+		ClienteServicio sc = new ClienteServicio();
+		sc.retornoListarClientes();
 		System.out.println("RUN del Cliente: ");
 		System.out.println("Nombre del Cliente: ");
 		System.out.println("Apellido del Cliente: ");
