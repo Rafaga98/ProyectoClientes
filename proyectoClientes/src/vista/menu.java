@@ -151,7 +151,7 @@ public class menu {
 	public void listarCliente() throws IOException {
 		System.out.println("-----------------Datos del Cliente----------------");
 		ClienteServicio sc = new ClienteServicio();
-		sc.retornoListarClientes(this.clientes);
+		sc.retornoListarClientes(clientes);
 		utilidad.tiempoEspera();
 		utilidad.limpieza();
 		utilidad.tiempoEspera();

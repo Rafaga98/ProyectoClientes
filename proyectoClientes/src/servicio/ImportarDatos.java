@@ -57,11 +57,11 @@ public class ImportarDatos extends ArchivoServicio{
 					  String n = lista[1];
 					  String a = lista[2];
 					  String anio = lista[3];
-					  String NombreCategoria = lista[4];
+					  String NombreCategoria = lista[4].trim();
 					  
 					  System.out.println(NombreCategoria);
 					  
-					  if(NombreCategoria == "Activo") {
+					  if(NombreCategoria.equalsIgnoreCase("Activo")) {
 						  Cliente clientes = new Cliente(r, n, a, anio, CategoriaEnum.ACTIVO);
 						  List<Cliente> listaClientes = new ArrayList<>();
 						  listaClientes.add(clientes);
@@ -70,7 +70,7 @@ public class ImportarDatos extends ArchivoServicio{
 						  cS.setListaClientes(listaClientes);
 						  
 						  
-					  }else {
+					  }else{
 						  Cliente clientes = new Cliente(r, n, a, anio, CategoriaEnum.INACTIVO);
 						  List<Cliente> listaClientes = new ArrayList<>();
 						  listaClientes.add(clientes);
