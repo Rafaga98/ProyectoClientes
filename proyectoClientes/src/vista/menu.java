@@ -135,8 +135,11 @@ public class menu {
 	
 	
 	public void listarCliente() {
+		
 		System.out.println("-----------------Datos del Cliente----------------");
 		System.out.println("--------------------------------------------------");
+		ClienteServicio cs = new ClienteServicio();
+		cs.retornoListarClientes();
 	}
 	public void agregarCliente() {	
 		System.out.println("-----------------Crear Cliente----------------");
