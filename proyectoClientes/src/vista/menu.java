@@ -339,6 +339,14 @@ public class menu {
 				System.out.println("-----------Cargar Datos en Windows--------------");
 				System.out.println("Ingresa la ruta en donde se encuentra el archivo DBClientes.csv: ");
 				ruta = leer.next();
+				ImportarDatos imp = new ImportarDatos();
+				try {
+					imp.cargarDatos(ruta+"/"+fileName1);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				utilidad.tiempoEspera();
 				utilidad.limpieza();
 				utilidad.mostrarMensaje2();
