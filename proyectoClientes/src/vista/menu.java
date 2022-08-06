@@ -1,5 +1,7 @@
 package vista;
 import java.util.Scanner;
+
+import modelo.Cliente;
 import servicio.*;
 
 public class menu {
@@ -151,10 +153,17 @@ public class menu {
 	public void agregarCliente() {	
 		System.out.println("-----------------Crear Cliente----------------");
 		System.out.println("Ingresa RUN del Cliente: ");
+		String rut = leer.next();
 		System.out.println("Igresa Nombre del Cliente: ");
+		String nombre= leer.next();
 		System.out.println("Ingresa Apellido del Cliente: ");
+		String apellido= leer.next();
 		System.out.println("Ingresa Edad del Cliente: ");
+		String edad= leer.next();
 		System.out.println("-----------------------------------------------");
+		
+		Cliente cliente = new Cliente(rut, nombre, apellido, edad, null);
+		
 	}
 	
 	
