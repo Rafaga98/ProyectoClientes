@@ -48,11 +48,15 @@ public class ImportarDatos extends ArchivoServicio{
 				while(contenidoArchivo !=null) {
 					//System.out.println(contenidoArchivo);
 					contenidoArchivo = memoriaLectura.readLine();
-					List<String> listaArchivo = new ArrayList<>();
-					listaArchivo.add(contenidoArchivo);
+					/*
+					 * List<String> listaArchivo = new ArrayList<>();
+					 * listaArchivo.add(contenidoArchivo);
+					 */
 					
-			
 					
+					String[] datos = contenidoArchivo.split(":");
+					
+					System.out.println(datos);
 					
 					
 				}
