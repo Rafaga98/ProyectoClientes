@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Cliente;
@@ -45,8 +46,15 @@ public class ImportarDatos extends ArchivoServicio{
 				 */
 				String contenidoArchivo = memoriaLectura.readLine();
 				while(contenidoArchivo !=null) {
-					System.out.println(contenidoArchivo);
+					//System.out.println(contenidoArchivo);
 					contenidoArchivo = memoriaLectura.readLine();
+					List<String> listaArchivo = new ArrayList<>();
+					listaArchivo.add(contenidoArchivo);
+					
+			
+					
+					
+					
 				}
 				memoriaLectura.close();
 	}
