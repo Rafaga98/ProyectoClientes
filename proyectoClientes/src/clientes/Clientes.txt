@@ -1,0 +1,7 @@
+-----------------------------------------
+Rut: 1-9
+Nombre: claudio
+Apellido: alarcon
+Años como cliente: 7
+Categoria: ACTIVO
+-----------------------------------------

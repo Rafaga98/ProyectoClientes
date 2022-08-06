@@ -164,7 +164,7 @@ public class menu {
 		String nombre = leer.next();
 		System.out.println("Ingresa Apellido del Cliente: ");
 		String apellido = leer.next();
-		System.out.println("Ingresa Edad del Cliente: ");
+		System.out.println("Ingresa los años como Cliente: ");
 		String edad = leer.next();
 		
 		System.out.println("-----------------------------------------------");
@@ -375,11 +375,13 @@ public class menu {
 				ruta = leer.next().toString();
 				ExportadorCsv ecsv = new ExportadorCsv();
 				ecsv.crearCarpeta(ruta);
-				ecsv.crearArchivo(ruta+"/"+fileName+".txt");
-				ecsv.exportar(ruta+"/"+fileName+".txt", clientes);
+				ecsv.crearArchivo(ruta+"/"+fileName+".csv");
+				ecsv.exportar(ruta+"/"+fileName+".csv", clientes);
 				utilidad.tiempoEspera();
 				utilidad.limpieza();
 				System.out.println("Datos de Clientes exoportados correctamente en formato csv.");
+				utilidad.tiempoEspera();
+				iniciarMenu();
 				break;
 			case 2:
 				System.out.println("----------------------Exportar Datos en Windows-----------------------");
@@ -393,6 +395,8 @@ public class menu {
 				utilidad.tiempoEspera();
 				utilidad.limpieza();
 				System.out.println("Datos de Clientes exoportados correctamente en formato txt.");
+				utilidad.tiempoEspera();
+				iniciarMenu();
 				break;
 			default:
 				break;
