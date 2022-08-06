@@ -2,6 +2,7 @@ package vista;
 import java.util.Scanner;
 
 import modelo.Cliente;
+import modelo.CategoriaEnum;
 import servicio.*;
 
 public class menu {
@@ -18,7 +19,7 @@ public class menu {
 	String respuesta;
 	String ruta;
 	
-	
+	 public menu() {}
 	
 	//Constructor
 		public menu(ClienteServicio clienteServicio, ArchivoServicio archivoServicio, ExportadorCsv exportarCsv,
@@ -105,7 +106,7 @@ public class menu {
 			System.out.println("4.- Cargar Datos");
 			System.out.println("5.- Exportar Datos");
 			System.out.println("6.- Salir");
-			System.out.println("Ingrese una opción: ");
+			System.out.println("Ingrese una opcion: ");
 			opcion = leer.nextInt();
 			
 			switch(opcion) {
@@ -143,7 +144,7 @@ public class menu {
 		System.out.println("-----------------Datos del Cliente----------------");
 		ClienteServicio sc = new ClienteServicio();
 		sc.retornoListarClientes();
-		System.out.println("RUN del Cliente: ");
+		System.out.println("RUN del Cliente: " );
 		System.out.println("Nombre del Cliente: ");
 		System.out.println("Apellido del Cliente: ");
 		System.out.println("Edad del Cliente: ");
@@ -154,7 +155,7 @@ public class menu {
 		System.out.println("-----------------Crear Cliente----------------");
 		System.out.println("Ingresa RUN del Cliente: ");
 		String rut = leer.next();
-		System.out.println("Igresa Nombre del Cliente: ");
+		System.out.println("Ingresa Nombre del Cliente: ");
 		String nombre= leer.next();
 		System.out.println("Ingresa Apellido del Cliente: ");
 		String apellido= leer.next();
@@ -163,6 +164,7 @@ public class menu {
 		System.out.println("-----------------------------------------------");
 		
 		Cliente cliente = new Cliente(rut, nombre, apellido, edad, null);
+		System.out.println(cliente.toString());
 		
 	}
 	
@@ -171,10 +173,10 @@ public class menu {
 	public void editarCliente() {	
 		System.out.println("-----------------Editar Cliente----------------");
 		do {
-			System.out.println("Seleccione qué desea hacer: ");
+			System.out.println("Seleccione que desea hacer: ");
 			System.out.println("1.-Cambiar el estado del Cliente");
 			System.out.println("2.-Editar los datos ingresados del Cliente");
-			System.out.println("Ingrese opción: ");
+			System.out.println("Ingrese opcion: ");
 			opcion = leer.nextInt();
 			switch(opcion) {
 				case 1:
@@ -184,7 +186,7 @@ public class menu {
 					System.out.println("El estado actual es: Activo");
 					System.out.println("1.- Si desea cambiar el estado del Cliente a Inactivo");
 					System.out.println("2.- Si desea mantener el estado del Cliente Activo");
-					System.out.println("Ingrese opción: ");
+					System.out.println("Ingrese opcion: ");
 					opcion = leer.nextInt();
 					do {
 						switch(opcion){
@@ -207,7 +209,7 @@ public class menu {
 					System.out.println("2.- El Nombre del Cliente es: ");
 					System.out.println("3.- El Apellido del Cliente es: ");
 					System.out.println("4.- Los años del Cliente son: ");
-					System.out.println("Ingrese opción a editar: ");
+					System.out.println("Ingrese opcion a editar: ");
 					opcion = leer.nextInt();
 					System.out.println("-------------------------------------------");
 					do {
