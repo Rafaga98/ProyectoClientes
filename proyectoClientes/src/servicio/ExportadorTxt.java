@@ -10,7 +10,7 @@ import servicio.*;
 import modelo.Cliente;
 
 public class ExportadorTxt extends Exportador{
-	String nombreArchivo = "Cliente.txt";
+	//String nombreArchivo = "Cliente.txt";
 	public ExportadorTxt(List<Cliente> listaClientes) {
 		super(listaClientes);
 		// TODO Auto-generated constructor stub
@@ -23,22 +23,22 @@ public class ExportadorTxt extends Exportador{
 	@Override
 	public void exportar(String nombreArchivo, List<Cliente> listaClientes) throws IOException {
 		// TODO Auto-generated method stub
-		File archivo = new File(this.nombreArchivo);
+		File archivo = new File(nombreArchivo);
 		FileWriter escribir = new FileWriter(archivo,true);
 		BufferedWriter memoriaEscritura= new BufferedWriter(escribir);
 		for(Iterator<Cliente> iterador = listaClientes.iterator(); iterador.hasNext();) {
 			Cliente cliente = (Cliente)iterador.next();
 			memoriaEscritura.write("-----------------------------------------");
 			memoriaEscritura.newLine();
-			memoriaEscritura.write("Nombre: "+cliente.getRunCliente());
+			memoriaEscritura.write("Rut: "+cliente.getRunCliente());
 			memoriaEscritura.newLine();
-			memoriaEscritura.write("Precio: "+cliente.getNombreCliente());
+			memoriaEscritura.write("Nombre: "+cliente.getNombreCliente());
 			memoriaEscritura.newLine();
-			memoriaEscritura.write("Codigo: "+cliente.getApellidoCliente());
+			memoriaEscritura.write("Apellido: "+cliente.getApellidoCliente());
 			memoriaEscritura.newLine();
-			memoriaEscritura.write("Codigo: "+cliente.getAniosCliente());
+			memoriaEscritura.write("Años como cliente: "+cliente.getAniosCliente());
 			memoriaEscritura.newLine();
-			memoriaEscritura.write("Codigo: "+cliente.getNombreCategoria());
+			memoriaEscritura.write("Categoria: "+cliente.getNombreCategoria());
 			memoriaEscritura.newLine();
 			memoriaEscritura.write("-----------------------------------------");
 		}
@@ -63,7 +63,7 @@ public class ExportadorTxt extends Exportador{
 	@Override
 	public void crearArchivo(String nombreArchivo) {
 		// TODO Auto-generated method stub
-		File archivo = new File(this.nombreArchivo);
+		File archivo = new File(nombreArchivo);
 		if(!archivo.exists()) {
 			try {
 				archivo.createNewFile();

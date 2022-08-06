@@ -1,5 +1,7 @@
 package vista;
 import utilidades.Utilidad;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -100,7 +102,7 @@ public class menu {
 
 	// metodos de negocio
 
-	public void iniciarMenu() {
+	public void iniciarMenu() throws IOException {
 		do {
 			System.out.println("1.- Listar Clientes");
 			System.out.println("2.- Agregar Cliente");
@@ -339,7 +341,7 @@ public class menu {
 		System.out.println("Datos Cargados Correctamente");
 	}// cierre del metodo importar
 
-	public void exportarDatos() {
+	public void exportarDatos() throws IOException {
 		System.out.println("-----------Exportar Datos--------------");
 		System.out.println("Seleccione el formato a exportar:");
 		System.out.println("1.-Formato csv");
@@ -363,6 +365,8 @@ public class menu {
 				ruta = leer.next().toString();
 				ExportadorTxt ett = new ExportadorTxt();
 				ett.crearCarpeta(ruta);
+				ett.crearArchivo(ruta+"/cliente.txt");
+				ett.exportar(ruta+"/cliente.txt", clientes);
 				utilidad.tiempoEspera();
 				utilidad.limpieza();
 				System.out.println("Datos de Clientes exoportados correctamente en formato txt.");
