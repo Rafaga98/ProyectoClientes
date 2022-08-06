@@ -314,7 +314,7 @@ public class menu {
 				System.out.println("Datos cambiados con éxito");
 				break;
 			case 4:
-				System.out.println("4.- Ingrese nueva Edad del Cliente: ");
+				System.out.println("4.- Ingrese nuevos años como Cliente: ");
 				respuesta = leer.next();
 				cliente.setAniosCliente(respuesta);
 				System.out.println("Datos cambiados con éxito");
@@ -415,6 +415,7 @@ public class menu {
 				iniciarMenu();
 				break;
 			default:
+				utilidad.mostrarMensaje();
 				break;
 			}
 		} while (opcion != 2);
