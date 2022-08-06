@@ -16,6 +16,10 @@ public class ExportadorTxt extends Exportador{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public ExportadorTxt() {
+		
+	}
+	
 	@Override
 	public void exportar(String nombreArchivo, List<Cliente> listaClientes) throws IOException {
 		// TODO Auto-generated method stub
@@ -44,9 +48,9 @@ public class ExportadorTxt extends Exportador{
 
 	}
 	@Override
-	public void crearCarpeta(String fileName) {
+	public void crearCarpeta(String ruta) {
 		// TODO Auto-generated method stub
-		File carpeta = new File(fileName);
+		File carpeta = new File(ruta);
 		if(!carpeta.exists()) {
 			try{
 				carpeta.mkdirs();

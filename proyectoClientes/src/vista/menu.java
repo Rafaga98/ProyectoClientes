@@ -359,8 +359,10 @@ public class menu {
 			case 2:
 				System.out.println("----------------------Exportar Datos en Windows-----------------------");
 				System.out.println("Ingresa la ruta en donde se desea exportar el archivo clientes.txt: ");
-				ruta = leer.next();
-				exportarTxt.crearCarpeta(ruta);
+				//Scanner ss = new Scanner();
+				ruta = leer.next().toString();
+				ExportadorTxt ett = new ExportadorTxt();
+				ett.crearCarpeta(ruta);
 				utilidad.tiempoEspera();
 				utilidad.limpieza();
 				System.out.println("Datos de Clientes exoportados correctamente en formato txt.");
