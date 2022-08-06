@@ -364,7 +364,11 @@ public class menu {
 			case 1:
 				System.out.println("------------------Exportar Datos en Linux o MAC------------------------");
 				System.out.println("Ingresa la ruta en donde se desea exportar el archivo clientes.csv: ");
-				ruta = leer.next();
+				ruta = leer.next().toString();
+				ExportadorCsv ecsv = new ExportadorCsv();
+				ecsv.crearCarpeta(ruta);
+				ecsv.crearArchivo(ruta+"/cliente.csv");
+				ecsv.exportar(ruta+"/cliente.csv", clientes);
 				utilidad.tiempoEspera();
 				utilidad.limpieza();
 				System.out.println("Datos de Clientes exoportados correctamente en formato csv.");
